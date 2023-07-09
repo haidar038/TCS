@@ -6,6 +6,89 @@
     --font-grotesk: "Space Grotesk";
 }
 
+@property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+@property --num2 {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+@property --num3 {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+
+.count-number {
+    animation: counter 2s normal both ease-in-out;
+    counter-reset: num var(--num);
+    padding: 2rem;
+}
+
+.count-number2 {
+    animation: counter2 2s normal both ease-in-out;
+    counter-reset: num2 var(--num2);
+    padding: 2rem;
+}
+
+.count-number3 {
+    animation: counter3 2s normal both ease-in-out;
+    counter-reset: num3 var(--num3);
+    padding: 2rem;
+}
+
+.count-number::after {
+    content: counter(num);
+}
+
+.count-number2::after {
+    content: counter(num2);
+}
+
+.count-number3::after {
+    content: counter(num3);
+}
+
+.number-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box {
+    text-align: center;
+}
+
+@keyframes counter {
+    from {
+        --num: 0;
+    }
+    to {
+        --num: 20;
+    }
+}
+
+@keyframes counter2 {
+    from {
+        --num2: 0;
+    }
+    to {
+        --num2: 11;
+    }
+}
+
+@keyframes counter3 {
+    from {
+        --num3: 0;
+    }
+    to {
+        --num3: 34;
+    }
+}
+
 * {
     font-family: var(--font-grotesk);
 }
@@ -120,8 +203,9 @@ html {
     opacity: 0.08;
 }
 
-#about .about-imgs img {
+#about .left img {
     image-rendering: optimizeSpeed;
+    width: 100%;
     box-shadow: 0 0 0px 1rem var(--color-yellow);
     animation-name: imgPulse;
     animation-duration: 1.5s;
@@ -131,7 +215,8 @@ html {
 
 #history .left {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem;
 }
 
 #events {
@@ -145,8 +230,21 @@ html {
     opacity: 0.08;
 }
 
+.events {
+    background-color: var(--color-pink);
+    background-blend-mode: color-burn;
+    background-image: url("https://source.unsplash.com/SYTO3xs06fU");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .nav-menus {
     display: none;
+}
+
+.first-img {
+    display: none !important;
 }
 
 @keyframes imgPulse {
@@ -163,13 +261,18 @@ html {
         height: max-content;
     }
 
+    .event-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem;
+    }
+
     .hero-img {
         display: none;
     }
 
-    .event-cards {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.8rem;
+    .visi,
+    .misi {
+        margin-bottom: 2rem;
     }
 
     #history .left {
@@ -180,5 +283,9 @@ html {
     #about-bg {
         opacity: 0.05;
         height: 100%;
+    }
+
+    #about .left {
+        display: none !important;
     }
 }
